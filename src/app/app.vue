@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import {BrowserRouter} from "@/router"
+import {BrowserView} from "@/router"
 </script>
 
 <template>
-  <browser-router />
+  <browser-view />
 </template>
