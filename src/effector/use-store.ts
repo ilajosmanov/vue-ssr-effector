@@ -12,7 +12,7 @@ export function useStore<T>(store: Store<T>, scopeName = "root") {
 
   let _ = shallowRef(state)
 
-  let unwatch = store.updates.watch(value => {
+  let unwatch = store.updates.watch((value) => {
     _.value = shallowRef(value).value
   })
 

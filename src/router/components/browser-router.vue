@@ -8,7 +8,7 @@ import {useEvent} from "@/effector/use-event"
 const route = useRoute()
 const updated = useEvent(historyUpdated)
 
-watch(route, currentRoute => {
+watch(route, (currentRoute) => {
   updated(currentRoute)
 })
 </script>

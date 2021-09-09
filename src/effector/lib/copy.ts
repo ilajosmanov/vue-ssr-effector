@@ -8,7 +8,7 @@ export function copy<T>(obj, cache = []): T {
     return obj
   }
 
-  let hit = find(cache, c => c.original === obj)
+  let hit = find(cache, (c) => c.original === obj)
   if (hit) {
     return hit.copy
   }
@@ -19,7 +19,7 @@ export function copy<T>(obj, cache = []): T {
     copy: _copy,
   })
 
-  Object.keys(obj).forEach(key => {
+  Object.keys(obj).forEach((key) => {
     _copy[key] = deepCopy(obj[key], cache)
   })
 

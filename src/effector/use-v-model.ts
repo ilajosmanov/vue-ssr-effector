@@ -15,7 +15,7 @@ export function useVModel<T>(store: Store<T>, scopeName = "root") {
   let isSelfUpdate = false
   let fromEvent = false
 
-  let unwatch = store.updates.watch(payload => {
+  let unwatch = store.updates.watch((payload) => {
     if (isSelfUpdate) {
       return
     }
@@ -30,7 +30,7 @@ export function useVModel<T>(store: Store<T>, scopeName = "root") {
 
   watch(
     () => _.value,
-    value => {
+    (value) => {
       isSelfUpdate = true
 
       if (!fromEvent) {

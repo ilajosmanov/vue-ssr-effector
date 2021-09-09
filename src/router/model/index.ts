@@ -9,5 +9,5 @@ export function createRouteMatcher(config: {
   return sample({
     clock: historyUpdated,
     fn: (update) => update.name === config.name ? update : null
-  }).filterMap(match => match ?? undefined)
+  }).filterMap((match) => match ?? undefined)
 }

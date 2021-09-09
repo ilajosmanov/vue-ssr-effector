@@ -25,6 +25,7 @@ module.exports = {
     quotes: ["error", "double"],
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "arrow-parens": ["error", "always"],
     "vue/mustache-interpolation-spacing": ["error", "never"],
     "@typescript-eslint/explicit-function-return-type": ["off"],
     "quote-props": ["error", "as-needed"],

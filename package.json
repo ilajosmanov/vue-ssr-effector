@@ -43,10 +43,20 @@
     "eslint-plugin-unicorn": "^35.0.0",
     "eslint-plugin-vue": "^7.17.0",
     "nodemon": "^2.0.12",
+    "simple-git-hooks": "^2.6.1",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2",
     "vite": "^2.5.5",
     "vue-eslint-parser": "^7.11.0",
     "vue-tsc": "^0.3.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts}": [
+      "npm run lint",
+      "git add"
+    ]
   }
 }
