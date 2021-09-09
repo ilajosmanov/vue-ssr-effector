@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    ["effector/babel-plugin", {
+      "addLock": true
+    }]
+  ]
+}
