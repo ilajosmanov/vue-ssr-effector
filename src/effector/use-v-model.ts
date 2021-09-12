@@ -4,6 +4,7 @@ import {onUnmounted, ref, inject, watch} from "vue"
 import {unwrap} from "./lib/unwrap"
 import {copy} from "./lib/copy"
 import {stateReader} from "./lib/state-reader"
+import {createWatch} from "./lib/create-watch"
 
 export function useVModel<T>(store: Store<T>, scopeName = "root") {
   if (!is.store(store)) throw Error("expect useStore argument to be a store")
@@ -15,17 +16,21 @@ export function useVModel<T>(store: Store<T>, scopeName = "root") {
   let isSelfUpdate = false
   let fromEvent = false
 
-  let unwatch = store.updates.watch((payload) => {
-    if (isSelfUpdate) {
-      return
-    }
+  let stop = createWatch(
+    store,
+    (payload) => {
+      if (isSelfUpdate) {
+        return
+      }
 
-    fromEvent = true
-    _.value = ref(copy(payload)).value
-  })
+      fromEvent = true
+      _.value = ref(copy(payload)).value
+    },
+    scope
+  )
 
   onUnmounted(() => {
-    unwatch()
+    stop()
   })
 
   watch(

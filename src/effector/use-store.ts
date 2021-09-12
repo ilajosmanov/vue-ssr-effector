@@ -1,6 +1,7 @@
 import {is, Scope, Store} from "effector"
 import {onUnmounted, readonly, shallowRef, inject} from "vue"
 
+import {createWatch} from "./lib/create-watch"
 import {stateReader} from "./lib/state-reader"
 import {throwError} from "./lib/throw"
 
@@ -9,15 +10,18 @@ export function useStore<T>(store: Store<T>, scopeName = "root") {
 
   let scope: Scope | undefined = inject(scopeName)
   let state = stateReader(store, scope)
-
   let _ = shallowRef(state)
 
-  let unwatch = store.updates.watch((value) => {
-    _.value = shallowRef(value).value
-  })
+  let stop = createWatch(
+    store,
+    (value) => {
+      _.value = shallowRef(value).value
+    },
+    scope
+  )
 
   onUnmounted(() => {
-    unwatch()
+    stop()
   })
 
   return readonly(_)
