@@ -1,7 +1,11 @@
+import {defineComponent} from "vue"
 import {mount} from "@vue/test-utils"
-import {createEvent, createStore} from "effector"
+import {createEvent, fork, createStore} from "effector"
+import {renderToString} from "@vue/server-renderer"
 
 import {useVModel} from "../use-v-model"
+import {prettyHtml} from "../../_fixtures/pretty"
+import {createApp} from "../../_fixtures/create-app"
 
 describe("use-v-model.ts", () => {
   it("updated value of input if store changed from outside", async () => {
@@ -144,5 +148,29 @@ describe("use-v-model.ts", () => {
     await wrapper.find("[data-test=\"gender\"]").setValue()
     expect($gender.getState()).toEqual("female")
   })
+})
 
+describe("use-v-model [ssr]", () => {
+  it("initial render works correct", async () => {
+    let name$ = createStore("John Doe")
+    let scope = fork()
+
+    let wrapper = defineComponent({
+      setup() {
+        let name = useVModel(name$)
+        return {name}
+      },
+      template: `
+        <input v-model="name" data-test="name" :value="name">
+      `
+    })
+
+    let {app} = createApp(scope, wrapper)
+    let html = await renderToString(app)
+    expect(prettyHtml(html)).toMatchInlineSnapshot(`
+    "
+    <input data-test='name' value='John Doe' />
+    "
+    `)
+  })
 })
