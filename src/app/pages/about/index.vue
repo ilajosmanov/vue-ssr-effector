@@ -4,9 +4,4 @@ import "./model"
 
 <template>
   Hello Vue SSR + Effector
-  <nav>
-    <router-link :to="{name: 'about'}">
-      About page
-    </router-link>
-  </nav>
 </template>

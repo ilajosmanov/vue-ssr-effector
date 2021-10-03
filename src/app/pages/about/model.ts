@@ -1,7 +1,7 @@
 import {createPageMatcher} from "@/router"
 
 const pageOpened = createPageMatcher({
-  name: "home"
+  name: "about"
 })
 
 pageOpened.watch((result) => {
