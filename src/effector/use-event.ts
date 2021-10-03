@@ -1,8 +1,9 @@
-import {inject} from "vue"
-import {Event, Scope, scopeBind} from "effector"
+import {Event, scopeBind} from "effector"
 
-export function useEvent<T>(event: Event<T>, scopeName = "root") {
-  let scope: Scope | undefined = inject(scopeName)
+import {getScope} from "./lib/get-scope"
+
+export function useEvent<T>(event: Event<T>) {
+  let {scope} = getScope()
 
   if (scope) {
     return scopeBind(event, {

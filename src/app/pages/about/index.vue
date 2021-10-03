@@ -3,5 +3,5 @@ import "./model"
 </script>
 
 <template>
-  Hello Vue SSR + Effector
+  Hello Vue SSR + Effector (About page)
 </template>

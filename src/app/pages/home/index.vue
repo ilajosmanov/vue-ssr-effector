@@ -3,10 +3,5 @@ import "./model"
 </script>
 
 <template>
-  Hello Vue SSR + Effector
-  <nav>
-    <router-link :to="{name: 'about'}">
-      About page
-    </router-link>
-  </nav>
+  Hello Vue SSR + Effector (Home page)
 </template>

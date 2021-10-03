@@ -20,7 +20,7 @@ export function copy<T>(obj, cache = []): T {
   })
 
   Object.keys(obj).forEach((key) => {
-    _copy[key] = deepCopy(obj[key], cache)
+    _copy[key] = copy(obj[key], cache)
   })
 
   return _copy

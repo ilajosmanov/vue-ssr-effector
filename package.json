@@ -11,7 +11,9 @@
     "build:client": "vue-tsc --noEmit && vite build --outDir dist/client --ssrManifest",
     "build:server": "vue-tsc --noEmit && vite build --outDir dist/server --ssr src/entry-server.ts",
     "serve": "cross-env NODE_ENV=production node server",
-    "lint": "eslint '*/**/*.{vue,js,ts}' --quiet --fix"
+    "lint": "eslint '*/**/*.{vue,js,ts}' --quiet --fix",
+    "test": "jest src",
+    "test:watch": "jest src --watch"
   },
   "dependencies": {
     "compression": "^1.7.4",
@@ -26,12 +28,14 @@
     "@logux/eslint-config": "^45.4.7",
     "@rollup/plugin-babel": "^5.3.0",
     "@types/babel__core": "^7.1.16",
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "@vitejs/plugin-vue": "^1.6.0",
     "@vue/compiler-sfc": "^3.2.6",
     "@vue/server-renderer": "^3.2.9",
+    "@vue/test-utils": "^2.0.0-rc.15",
     "cross-env": "^7.0.3",
     "effector-logger": "^0.12.2",
     "eslint": "^7.32.0",
@@ -44,10 +48,13 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^35.0.0",
     "eslint-plugin-vue": "^7.17.0",
+    "jest": "^27.2.4",
     "simple-git-hooks": "^2.6.1",
+    "ts-jest": "^27.0.5",
     "typescript": "^4.4.2",
     "vite": "^2.5.5",
     "vue-eslint-parser": "^7.11.0",
+    "vue-jest": "^5.0.0-alpha.10",
     "vue-tsc": "^0.3.0"
   },
   "simple-git-hooks": {

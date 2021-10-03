@@ -1,14 +1,15 @@
-import {is, Scope, Store} from "effector"
-import {onUnmounted, readonly, shallowRef, inject} from "vue"
+import {is, Store} from "effector"
+import {onUnmounted, readonly, shallowRef} from "vue"
 
 import {createWatch} from "./lib/create-watch"
 import {stateReader} from "./lib/state-reader"
+import {getScope} from "./lib/get-scope"
 import {throwError} from "./lib/throw"
 
-export function useStore<T>(store: Store<T>, scopeName = "root") {
+export function useStore<T>(store: Store<T>) {
   if (!is.store(store)) throwError("expect useStore argument to be a store")
+  let {scope} = getScope()
 
-  let scope: Scope | undefined = inject(scopeName)
   let state = stateReader(store, scope)
   let _ = shallowRef(state)
 

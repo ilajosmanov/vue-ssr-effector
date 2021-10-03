@@ -1,17 +1,20 @@
-import {Store, Scope, is} from "effector"
-import {onUnmounted, ref, inject, watch} from "vue"
+import {Store, is} from "effector"
+import {onUnmounted, ref, watch} from "vue"
 
 import {unwrap} from "./lib/unwrap"
 import {copy} from "./lib/copy"
 import {stateReader} from "./lib/state-reader"
 import {createWatch} from "./lib/create-watch"
+import {getScope} from "./lib/get-scope"
 
-export function useVModel<T>(store: Store<T>, scopeName = "root") {
+export function useVModel<T>(store: Store<T>) {
   if (!is.store(store)) throw Error("expect useStore argument to be a store")
 
-  let scope: Scope | undefined = inject(scopeName)
+  let {scope} = getScope()
 
-  let _ = ref(copy(stateReader(store, scope)))
+  let _ = ref(
+    copy(stateReader(store, scope))
+  )
 
   let isSelfUpdate = false
   let fromEvent = false
