@@ -2,7 +2,8 @@
 import {watch} from "vue"
 import {useRoute} from "vue-router"
 
-import {historyUpdated} from "@/router"
+import {historyUpdated} from "../model"
+
 import {useEvent} from "@/effector/use-event"
 
 const route = useRoute()

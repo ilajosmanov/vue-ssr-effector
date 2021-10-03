@@ -6,7 +6,7 @@ import {
 } from "effector"
 
 import {createApp} from "./app"
-import {historyUpdated} from "./router"
+import {historyUpdated} from "./router/model"
 
 type Manifest = Record<string, string[] | undefined>
 type Modules = string[]
