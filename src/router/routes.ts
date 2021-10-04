@@ -1,6 +1,6 @@
 import {RouteRecordRaw} from "vue-router"
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
   {
     name: "home",
     path: "/",
@@ -12,7 +12,3 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/app/pages/about/index.vue")
   },
 ]
-
-export {
-  routes
-}
