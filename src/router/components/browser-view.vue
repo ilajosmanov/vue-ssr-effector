@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import {watch} from "vue"
 import {useRoute} from "vue-router"
+import {useEvent} from "effector-vue/ssr"
 
 import {historyUpdated} from "../model"
-
-import {useEvent} from "@/effector/use-event"
 
 const route = useRoute()
 const updated = useEvent(historyUpdated)

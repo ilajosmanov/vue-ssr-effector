@@ -1,10 +1,10 @@
 import {createSSRApp} from "vue"
 import {Scope} from "effector"
+import {VueSSRPlugin} from "effector-vue/ssr"
 
 import App from "./app.vue"
 
 import {createRouter} from "@/router"
-import {VueSSRPlugin} from "@/effector/vue-ssr-plugin"
 
 export function createApp(scope: Scope) {
   let router = createRouter()
